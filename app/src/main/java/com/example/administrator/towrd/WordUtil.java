@@ -28,12 +28,9 @@ import org.openxmlformats.schemas.drawingml.x2006.wordprocessingDrawing.CTInline
 public class WordUtil {
 
 	/**
-	 * 鏍规嵁鎸囧畾鐨勫弬鏁板�笺�佹ā鏉匡紝鐢熸垚 word 鏂囨。
-	 * 
-	 * @param param
-	 *            闇�瑕佹浛鎹㈢殑鍙橀噺
-	 * @param template
-	 *            妯℃澘
+	 *根据指定的参数值、模板，生成 word 文档
+	 * @param param 需要替换的变量
+	 * @param template 模板
 	 */
 	public static CustomXWPFDocument generateWord(Map<String, Object> param,
 			String template) {
@@ -43,11 +40,11 @@ public class WordUtil {
 			doc = new CustomXWPFDocument(pack);
 			if (param != null && param.size() > 0) {
 
-				// 澶勭悊娈佃惤
+				//处理段落
 				List<XWPFParagraph> paragraphList = doc.getParagraphs();
 				processParagraphs(paragraphList, param, doc);
 
-				// 澶勭悊琛ㄦ牸
+				//处理表格
 				Iterator<XWPFTable> it = doc.getTablesIterator();
 				while (it.hasNext()) {
 					XWPFTable table = it.next();
@@ -69,7 +66,7 @@ public class WordUtil {
 	}
 
 	/**
-	 * 澶勭悊娈佃惤
+	 * 处理段落
 	 * 
 	 * @param paragraphList
 	 */
@@ -186,8 +183,8 @@ public class WordUtil {
     } 
 
 	/**
-	 * 鏍规嵁鍥剧墖绫诲瀷锛屽彇寰楀搴旂殑鍥剧墖绫诲瀷浠ｇ爜
-	 * 
+	 * 根据图片类型，取得对应的图片类型代码
+	 *
 	 * @param picType
 	 * @return int
 	 */
@@ -211,7 +208,7 @@ public class WordUtil {
 	}
 
 	/**
-	 * 灏嗚緭鍏ユ祦涓殑鏁版嵁鍐欏叆瀛楄妭鏁扮粍
+	 * 将输入流中的数据写入字节数组
 	 * 
 	 * @param in
 	 * @return
@@ -229,7 +226,7 @@ public class WordUtil {
 				try {
 					in.close();
 				} catch (Exception e2) {
-					System.out.println("鍏抽棴娴佸け璐�");
+					System.out.println("关闭流失败�");
 				}
 			}
 		}
